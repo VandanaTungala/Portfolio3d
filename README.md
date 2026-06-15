@@ -1,16 +1,16 @@
-# 3D Monochrome Minimalist Portfolio
+# 3D Lavender Minimalist Portfolio
 
-A premium, modern, and highly interactive **3D Animated Portfolio** built using **Vite + React + Three.js**. The application features a high-contrast black-and-white minimalist design, responsive layouts, 3D card tilt effects, typewriter animations, and an automated deployment pipeline.
+A premium, modern, and highly interactive **3D Animated Portfolio** built using **Vite + React + Three.js**. The application features a light-mode minimalistic lavender design, responsive layouts, 3D card tilt effects, typewriter animations, and an automated deployment pipeline.
 
 ---
 
 ## 🚀 Features
 
-- **Constellation Plexus & 3D Shapes**: An interactive background canvas rendering moving particles and floating 3D wireframe geometries (icosahedrons, cubes, torus knots) that respond to mouse movement and scrolls.
-- **Glassmorphic Tactile Cards**: Frosted cards that tilt in 3D perspective based on real-time mouse position.
+- **Interactive Plexus & 3D Shapes**: An interactive background canvas rendering moving particles and floating 3D wireframe UX & development geometries (pen nib, pointer, curly braces, code tags, ampersands, arrows) that respond to mouse movement and scroll coordinates.
+- **Glassmorphic Tactile Cards**: Frosted glass cards that tilt in 3D perspective based on real-time mouse positions.
 - **Typewriter Cycling Banner**: Dynamic title typing animations on the landing page hero.
-- **Career & Achievements Timeline**: A vertical chronologically arranged work experience timeline.
-- **Interactive Contact Form**: Client-side validation with asynchronous simulated messaging state indicators.
+- **Certifications Timeline**: A vertical chronologically arranged achievements timeline.
+- **Interactive Contact Form**: Client-side validation with asynchronous messaging status indicators.
 - **Single File Configuration**: Edit your details, projects, skills, and links in one central place.
 
 ---
@@ -34,20 +34,21 @@ Here is the editable structure:
 ```javascript
 export const portfolioData = {
   profile: {
-    name: "Kotha Sri Ram Prasad",
-    titles: ["Game Developer", "Frontend Developer", ...],
+    name: "Vandana",
+    titles: ["AI & Full Stack Developer", "Machine Learning Enthusiast", ...],
     bio: "Intro bio...",
     about: "Detailed background...",
     stats: [...]
   },
   socials: {
-    github: "https://github.com/2300030356",
-    linkedin: "https://www.linkedin.com/in/sriramprasad-kottha/",
-    email: "sriramprasadkottha@gmail.com"
+    github: "https://github.com/VandanaTungala",
+    linkedin: "https://www.linkedin.com/in/vandana-tungala/",
+    email: "vandanatungala889@gmail.com",
+    whatsapp: "https://wa.me/919533557888"
   },
   skills: [...],
   projects: [...],
-  experience: [...]
+  certifications: [...]
 };
 ```
 
@@ -77,7 +78,7 @@ We configured the project with **GitHub Actions**, which automatically builds an
 ### Step-by-Step Deployment:
 
 1. **Create a GitHub Repository**:
-   Create a new repository on your GitHub account called `3d-portfolio`. *Do not initialize it with a README, gitignore, or license.*
+   Create a new repository on your GitHub account called `Portfolio3d`. *Do not initialize it with a README, gitignore, or license.*
 
 2. **Initialize Git & Push Local Code**:
    Open your terminal in the project directory and run:
@@ -95,7 +96,7 @@ We configured the project with **GitHub Actions**, which automatically builds an
    git branch -M main
 
    # Add GitHub remote (replace with your repository link)
-   git remote add origin https://github.com/2300030356/3d-portfolio.git
+   git remote add origin https://github.com/VandanaTungala/Portfolio3d.git
 
    # Push to GitHub
    git push -u origin main
@@ -109,4 +110,4 @@ We configured the project with **GitHub Actions**, which automatically builds an
 
 4. **Verify Deployment**:
    GitHub will trigger a deployment run (visible under the **Actions** tab). In about 1 minute, your portfolio will be live at:
-   👉 **`https://2300030356.github.io/3d-portfolio/`**
+   👉 **`https://VandanaTungala.github.io/Portfolio3d/`**
