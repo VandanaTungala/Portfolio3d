@@ -303,8 +303,9 @@ export default function Projects() {
               maxHeight: "85vh",
               overflowY: "auto",
               position: "relative",
+              background: "var(--bg-main)",
               border: "1px solid var(--border-hover)",
-              boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.08)",
+              boxShadow: "0 20px 50px -10px rgba(0, 0, 0, 0.15)",
             }}
             onClick={(e) => e.stopPropagation()}
           >

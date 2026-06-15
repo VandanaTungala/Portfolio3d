@@ -118,7 +118,7 @@ export const portfolioData = {
     {
       role: "Technical Core Member",
       company: "Mayavi (Game Development Club)",
-      duration: "2023 - Present",
+      duration: "2025 - Present",
       description: "Educated club members on game development tools including Unity, Unreal Engine, and Autodesk Maya animation. Successfully organized events and conducted hands-on workshops, demonstrating and building sample game prototypes in both Unity and Unreal Engine.",
     },
     {
