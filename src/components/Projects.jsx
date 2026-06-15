@@ -285,7 +285,7 @@ export default function Projects() {
             left: 0,
             width: "100%",
             height: "100%",
-            background: "rgba(3, 5, 12, 0.85)",
+            background: "rgba(0, 0, 0, 0.45)",
             backdropFilter: "blur(20px)",
             display: "flex",
             justifyContent: "center",

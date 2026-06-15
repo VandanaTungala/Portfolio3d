@@ -8,12 +8,12 @@
   
   --primary: #000000;       /* Pure Black */
   --primary-glow: rgba(0, 0, 0, 0.1);
-  --secondary: #525252;     /* Cool Gray */
+  --secondary: #000000;     /* Pure Black */
   --secondary-glow: rgba(0, 0, 0, 0.03);
   
   --text-primary: #000000;
-  --text-secondary: #525252;
-  --text-muted: #a3a3a3;
+  --text-secondary: #000000;
+  --text-muted: #000000;
   
   /* Layout */
   --nav-height: 80px;

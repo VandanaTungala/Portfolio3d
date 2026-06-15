@@ -11,7 +11,7 @@ export default function Footer() {
         borderTop: "1px solid var(--border-light)",
         padding: "2.5rem 0",
         position: "relative",
-        background: "rgba(3, 5, 12, 0.4)",
+        background: "transparent",
         backdropFilter: "blur(8px)",
       }}
     >
@@ -52,7 +52,7 @@ export default function Footer() {
         <button
           onClick={scrollToTop}
           style={{
-            background: "rgba(255, 255, 255, 0.02)",
+            background: "rgba(0, 0, 0, 0.02)",
             border: "1px solid var(--border-light)",
             color: "var(--text-secondary)",
             borderRadius: "12px",
