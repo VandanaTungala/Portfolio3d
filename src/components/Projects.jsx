@@ -336,7 +336,7 @@ export default function Projects() {
             </button>
 
             {/* Modal Image */}
-            <div style={{ height: "300px", position: "relative", background: "#eaeaea" }}>
+            <div style={{ height: "300px", position: "relative", background: "var(--bg-surface)" }}>
               <img
                 src={selectedProject.image}
                 alt={selectedProject.title}

@@ -1,13 +1,13 @@
-import { Briefcase } from "lucide-react";
+import { Award } from "lucide-react";
 import { portfolioData } from "../data/portfolioData";
 import TiltCard from "./TiltCard";
 
-export default function Experience() {
-  const { experience } = portfolioData;
+export default function Certifications() {
+  const { certifications } = portfolioData;
 
   return (
     <section
-      id="experience"
+      id="certifications"
       className="scroll-reveal"
       style={{
         padding: "5rem 0",
@@ -28,7 +28,7 @@ export default function Experience() {
               marginBottom: "0.5rem",
             }}
           >
-            03 / History
+            03 / Achievements
           </span>
           <h2
             style={{
@@ -41,7 +41,7 @@ export default function Experience() {
               gap: "1rem",
             }}
           >
-            Work Experience
+            Certifications
             <span style={{ width: "80px", height: "1px", background: "var(--border-light)" }} />
           </h2>
         </div>
@@ -79,7 +79,7 @@ export default function Experience() {
               gap: "3rem",
             }}
           >
-            {experience.map((item, index) => {
+            {certifications.map((item, index) => {
               const isEven = index % 2 === 0;
               return (
                 <div
@@ -119,7 +119,7 @@ export default function Experience() {
                     className="timeline-empty-space"
                   />
 
-                  {/* Experience Card */}
+                  {/* Certification Card */}
                   <TiltCard
                     maxTilt={5}
                     style={{
@@ -146,18 +146,23 @@ export default function Experience() {
                               fontSize: "1.2rem",
                               color: "var(--text-primary)",
                               fontWeight: 600,
+                              lineHeight: "1.4",
                             }}
                           >
-                            {item.role}
+                            {item.title}
                           </h3>
                           <span
                             style={{
                               fontSize: "0.9rem",
                               color: isEven ? "var(--primary)" : "var(--secondary)",
                               fontWeight: 500,
+                              display: "inline-flex",
+                              alignItems: "center",
+                              gap: "0.35rem",
+                              marginTop: "0.25rem",
                             }}
                           >
-                            {item.company}
+                            <Award size={14} /> {item.issuer}
                           </span>
                         </div>
                         <span
@@ -175,16 +180,6 @@ export default function Experience() {
                         </span>
                       </div>
 
-                      {/* Timeline Card Body */}
-                      <p
-                        style={{
-                          fontSize: "0.9rem",
-                          color: "var(--text-secondary)",
-                          lineHeight: "1.6",
-                        }}
-                      >
-                        {item.description}
-                      </p>
                     </div>
                   </TiltCard>
 

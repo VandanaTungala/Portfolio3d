@@ -11,7 +11,7 @@ export default function Navbar() {
     { id: "home", label: "Home" },
     { id: "about", label: "About" },
     { id: "projects", label: "Projects" },
-    { id: "experience", label: "Experience" },
+    { id: "certifications", label: "Certifications" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -89,7 +89,7 @@ export default function Navbar() {
             gap: "0.25rem",
           }}
         >
-          KSRP<span style={{ color: "var(--primary)" }}></span>
+          Vandana<span style={{ color: "var(--primary)" }}>.T</span>
         </a>
 
         {/* Desktop Navigation */}

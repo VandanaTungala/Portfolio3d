@@ -35,7 +35,7 @@ export default function Footer() {
               fontWeight: 500,
             }}
           >
-            © {new Date().getFullYear()} Kotha Sriram Prasad. All rights reserved.
+            © {new Date().getFullYear()} Vandana. All rights reserved.
           </div>
           <div
             style={{

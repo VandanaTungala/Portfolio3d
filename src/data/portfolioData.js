@@ -1,137 +1,128 @@
 export const portfolioData = {
   profile: {
-    name: "Kotha Sri Ram Prasad",
+    name: "Vandana",
     titles: [
-      "Game Developer",
-      "Frontend Developer",
-      "UI/UX Designer",
+      "AI & Full Stack Developer",
+      "Machine Learning Enthusiast",
+      "React Developer",
       "Programmer"
     ],
-    bio: "Crafting beautiful, robust, and highly interactive web experiences. Specialized in React, modern CSS, and 3D web animations.",
-    about: "I am a passionate Software Engineering graduate and aspiring Full-Stack Developer with interests in Web Development, Game Development, and AI. I enjoy building innovative applications, learning new technologies, and solving real-world problems through clean and efficient code. I am always looking for opportunities to grow, collaborate, and create meaningful digital experiences.",
+    bio: "Building scalable full-stack applications and generative AI models. Specialized in React, Node.js, and Machine Learning workflows.",
+    about: "I am an AI and Full Stack Developer with hands-on experience in building scalable web applications and generative AI models. I have a strong foundation in machine learning and backend development with a focus on real-world problem solving. Currently pursuing my B.Tech in Computer Science and Engineering with a specialization in AI for Computational Intelligence at KL University, I maintain a CGPA of 8.89. I am passionate about cloud systems, AI-powered applications, and continuously improving my skills through hands-on development.",
     stats: [
-      { label: "Years Experience", value: "Fresher" },
-      { label: "Projects Completed", value: "6" },
+      { label: "Completed Projects", value: "3" },
+      { label: "Credentials Earned", value: "7" }
     ]
   },
   socials: {
-    github: "https://github.com/2300030356",
-    linkedin: "https://www.linkedin.com/in/sriramprasad-kottha/",
-    email: "sriramprasadkottha@gmail.com"
+    github: "https://github.com/VandanaTungala",
+    linkedin: "https://www.linkedin.com/in/vandana-tungala/",
+    email: "vandanatungala889@gmail.com",
+    whatsapp: "https://wa.me/919533557888"
   },
   skills: [
     {
+      category: "Languages",
+      items: ["Python", "JavaScript"]
+    },
+    {
       category: "Frontend",
-      items: ["React / Next.js", "JavaScript", "HTML5 & CSS3",]
+      items: ["React", "HTML", "CSS"]
     },
     {
-      category: "Game Development",
-      items: ["Unity", "Unreal Engine", "C#", "Blender", "3D and 2D Game level design", "Maya 3D Modeling"]
+      category: "Backend",
+      items: ["Node.js", "Express"]
     },
     {
-      category: "UI/UX Design",
-      items: ["Figma",  "Prototyping",
-      "User Interface Design",
-      "User Experience Design",
-      "Design Systems"]
+      category: "Database",
+      items: ["MySQL"]
+    },
+    {
+      category: "AI/ML",
+      items: ["Generative AI", "GANs", "AI Detection Models"]
     },
     {
       category: "Tools & Technologies",
-      items: [
-        "Git & GitHub",
-        "VSCode",
-        "Vercel / Netlify",
-        "Canva",
-        "Capcut",
-      ]
+      items: ["Git", "GitHub"]
     }
   ],
   projects: [
     {
-      id: "2D-game",
-      title: "Flappy bird 2d Game",
-      description: "Developed a 2D Flappy Bird-inspired game using Unity and C#. The game features smooth player controls, obstacle generation, collision detection, score tracking, and game-over mechanics. Focused on creating an engaging gameplay experience with optimized performance and responsive user interactions.",
-      longDescription: "This project is a fully functional 2D platformer game built with Unity. It features smooth character movement, responsive controls, and a variety of levels with unique challenges.",
-      tech: ["Unity", "C#", "Photoshop"],
-      category: "Game Development",
-      demoUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      image: "/projects/2d-game.png"
+      id: "event-management-system",
+      title: "Event Management System",
+      description: "Developed a full-stack event booking platform with secure user authentication and dynamic event management.",
+      longDescription: "Developed a full-stack event booking platform with secure user authentication and dynamic event management. Designed RESTful APIs using Node.js and integrated MySQL database for efficient data handling. Built responsive frontend using React with routing and interactive UI components.",
+      tech: ["React", "Node.js", "MySQL", "JavaScript", "REST APIs"],
+      category: "Full-Stack Development",
+      demoUrl: "https://github.com/VandanaTungala",
+      githubUrl: "https://github.com/VandanaTungala",
+      image: "/projects/event_booking_dashboard.png"
     },
     {
-      id: "3d-game",
-      title: "Nanobot's Enigma: The Techno Dungeon",
-      description: "Developed an action-adventure 3D game using Unity and C#. Control a battle nanobot armed with a sword and blasters to navigate dangerous dungeon chambers, defeat security sentries, and solve tech puzzles.",
-      longDescription: "Nanobot's Enigma: The Techno Dungeon is a stylized 3D platform action game built with Unity. It features responsive fluid controls, dynamic physics-based sword slashing combat, projectile blasters, level hazard spawning mechanisms, and a customized Main Menu screen with interactive options.",
-      tech: ["Unity", "C#", "Blender", "Maya"],
-      category: "Game Development",
-      demoUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      image: "/projects/3d-game.png"
+      id: "generative-ai-detection",
+      title: "Generative AI Detection",
+      description: "Built a machine learning model to classify AI-generated and human-generated content.",
+      longDescription: "Built a machine learning model to classify AI-generated and human-generated content. Performed data preprocessing and implemented classification techniques using Python to distinguish synthetic and human text with high accuracy.",
+      tech: ["Python", "Machine Learning", "Data Preprocessing", "Classification"],
+      category: "AI & Machine Learning",
+      demoUrl: "https://github.com/VandanaTungala",
+      githubUrl: "https://github.com/VandanaTungala",
+      image: "/projects/ai_detection_model.png"
     },
     {
-      id: "Frontend-development",
-      title: "Comic Book Reader",
-      description: "Developed a responsive frontend comic book reader web application that lets users browse and read digital comics seamlessly.",
-      longDescription: "This project is a responsive web application designed for comic book readers, facilitating digital PDF comic viewing, smooth navigation controls, and lightweight stylesheet rendering.",
-      tech: ["React", "JavaScript", "PDF OF COMICS", "CSS"],
-      category: "Frontend Development",
-      demoUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      image: "/projects/comic-reader.png"
-    },
-    {
-      id: "FULL-stack-development",
-      title: "SURAKSHA AI - A GIGWORKER INCOME PROTECTION SYSTEM",
-      description: "Developed an AI-powered gig worker income protection and insurance system that automates payouts and secures earnings during natural disasters.",
-      longDescription: "SURAKSHA AI is a full-stack web application designed to protect gig workers' income during natural disasters. Workers choose a monthly payment plan ($50, $100, $150, or $200), and if a natural disaster stops gig work, the insurance system automatically triggers payouts directly to the worker's bank account.",
-      tech: ["React", "Node.js", "MySQL", "JavaScript"],
-      category: "FULL-stack Development",
-      demoUrl: "https://69bcd3fc88aa6f9f59839bb1--melodious-naiad-2d1953.netlify.app/",
-      githubUrl: "https://github.com/sriramprasad17/suraksha-app-",
-      image: "/projects/suraksha-ai.png"
-    },
-    {
-      id: "hackathon-project",
-      title: "FarmDirect Marketplace",
-      description: "Developed a farmer-friendly web application during a hackathon that connects local farmers directly with consumers, featuring crop listings and a real-time negotiation chat system.",
-      longDescription: "FarmDirect is a peer-to-peer web marketplace built as a hackathon project to eliminate middlemen and empower local farmers. Farmers can list crops, set pricing, and communicate directly with buyers via an integrated WebSockets chat room.",
-      tech: ["React", "Node.js", "MySQL", "JavaScript", "CSS"],
-      category: "Hackathon Project",
-      demoUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      image: "/projects/farm-direct.png"
-    },
-    {
-      id: "ui-ux-design",
-      title: "FarmDirect UI/UX Design",
-      description: "Designed an intuitive and highly accessible UI/UX prototype in Figma for the FarmDirect marketplace, detailing how farmers can sell crops in simple, easy-to-understand steps.",
-      longDescription: "This project showcases the user experience and user interface design for FarmDirect. Created in Figma, it features localized onboarding wireframes, easy-to-use vector icon sets, a clean organic color palette, and interactive prototypes mapping step-by-step guides that explain how local farmers can easily list, edit, and sell crops directly to consumers.",
-      tech: ["Figma", "UI/UX Design", "Wireframing", "Prototyping"],
-      category: "UI/UX Design",
-      demoUrl: "https://example.com",
-      githubUrl: "https://github.com",
-      image: "/projects/farm-design.png"
+      id: "image-generation-gan",
+      title: "Image Generation using GAN",
+      description: "Developed a Generative Adversarial Network (GAN) to generate synthetic images.",
+      longDescription: "Developed a Generative Adversarial Network (GAN) to generate synthetic images. Trained deep learning model and evaluated output quality using standard techniques.",
+      tech: ["Python", "Generative AI", "GANs", "Deep Learning"],
+      category: "Generative AI",
+      demoUrl: "https://github.com/VandanaTungala",
+      githubUrl: "https://github.com/VandanaTungala",
+      image: "/projects/gan_image_generation.png"
     }
   ],
-  experience: [
+  certifications: [
     {
-      role: "Technical Core Member",
-      company: "Mayavi (Game Development Club)",
-      duration: "2025 - Present",
-      description: "Educated club members on game development tools including Unity, Unreal Engine, and Autodesk Maya animation. Successfully organized events and conducted hands-on workshops, demonstrating and building sample game prototypes in both Unity and Unreal Engine.",
+      title: "Oracle Cloud Infrastructure Generative AI Professional",
+      issuer: "Oracle",
+      duration: "Credential",
+      description: "Validation of expertise in Large Language Models (LLMs), prompt engineering, fine-tuning, and deploying generative AI solutions on Oracle Cloud Infrastructure."
     },
     {
-      role: "3D GAME LEVEL DESIGNER",
-      company: "CultivateU",
-      duration: "2025/SEP - 2026/FEB",
-      description: "Designed and developed an 3d game level for a 3d haunted house escape game using Unity and Blender. Created immersive environments, interactive puzzles, and optimized performance for smooth gameplay.",
+      title: "Aviatrix Certified Professional",
+      issuer: "Aviatrix",
+      duration: "Credential",
+      description: "Demonstrated skills in multi-cloud networking architecture, transit gateways, cloud security, and troubleshooting network environments across AWS, Azure, and GCP."
     },
     {
-      role: "Frontend Developer",
-      company: "AMDOX Technologies",
-      duration: "2026/MAY - 2026/JULY",
-      description: "Developed and maintained responsive web application using react and modern css techniques. I devloped an erp system for a client using react and node.js. Implemented user authentication, data visualization, and optimized performance for seamless user experience.",
+      title: "Linguaskill B2 (Cambridge)",
+      issuer: "Cambridge",
+      duration: "Credential",
+      description: "Verified B2 English proficiency level on the Common European Framework of Reference (CEFR) standard, demonstrating strong reading, writing, listening, and speaking skills."
     },
+    {
+      title: "Introduction to Git and GitHub",
+      issuer: "Google",
+      duration: "Credential",
+      description: "Comprehensive training in version control, tracking changes in code repositories, staging, committing, and collaborating via GitHub pull requests."
+    },
+    {
+      title: "JavaScript Algorithms and Data Structures",
+      issuer: "freeCodeCamp",
+      duration: "Credential",
+      description: "Covered foundational programming concepts, object-oriented programming, functional programming, basic algorithms, and data structures using JavaScript."
+    },
+    {
+      title: "Responsive Web Design",
+      issuer: "freeCodeCamp",
+      duration: "Credential",
+      description: "Completed projects using HTML5, CSS3, media queries, grid systems, and flexbox to build responsive, accessible, and mobile-friendly web interfaces."
+    },
+    {
+      title: "Spring Ecosystem and Core",
+      issuer: "LearnQuest",
+      duration: "Credential",
+      description: "Mastered core Spring Framework fundamentals, dependency injection, aspect-oriented programming (AOP), data access, and building enterprise Java applications."
+    }
   ]
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Mail, Send, CheckCircle } from "lucide-react";
-import { GithubIcon as Github, LinkedinIcon as Linkedin, TwitterIcon as Twitter } from "./SocialIcons";
+import { GithubIcon as Github, LinkedinIcon as Linkedin, WhatsappIcon as Whatsapp } from "./SocialIcons";
 import { portfolioData } from "../data/portfolioData";
 
 export default function Contact() {
@@ -148,7 +148,7 @@ export default function Contact() {
                 {[
                   { icon: <Github size={20} />, link: socials.github, label: "GitHub" },
                   { icon: <Linkedin size={20} />, link: socials.linkedin, label: "LinkedIn" },
-                  { icon: <Twitter size={20} />, link: socials.twitter, label: "Twitter" },
+                  { icon: <Whatsapp size={20} />, link: socials.whatsapp, label: "WhatsApp" },
                 ].map((s, idx) => (
                   <a
                     key={idx}

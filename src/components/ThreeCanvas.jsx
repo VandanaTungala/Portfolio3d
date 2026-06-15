@@ -28,30 +28,40 @@ export default function ThreeCanvas() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // --- Particle Texture (Black/Dark Gray dots) ---
+    // --- Particle Texture (Minimalistic Sparkle Stars) ---
     const createParticleTexture = () => {
       const canvas = document.createElement("canvas");
       canvas.width = 16;
       canvas.height = 16;
       const ctx = canvas.getContext("2d");
-      const grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
-      grad.addColorStop(0, "rgba(0, 0, 0, 1)");
-      grad.addColorStop(0.5, "rgba(0, 0, 0, 0.4)");
-      grad.addColorStop(1, "rgba(0, 0, 0, 0)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, 16, 16);
+      
+      ctx.fillStyle = "rgba(139, 92, 246, 0.85)";
+      ctx.beginPath();
+      // Start at top tip
+      ctx.moveTo(8, 1);
+      // Curve to right tip bending inward towards center (8, 8)
+      ctx.quadraticCurveTo(8, 8, 15, 8);
+      // Curve to bottom tip bending inward towards center (8, 8)
+      ctx.quadraticCurveTo(8, 8, 8, 15);
+      // Curve to left tip bending inward towards center (8, 8)
+      ctx.quadraticCurveTo(8, 8, 1, 8);
+      // Curve back to top tip bending inward towards center (8, 8)
+      ctx.quadraticCurveTo(8, 8, 8, 1);
+      ctx.closePath();
+      ctx.fill();
+      
       return new THREE.CanvasTexture(canvas);
     };
 
     // --- Particles Geometry & Material ---
-    const particleCount = 120;
+    const particleCount = 240;
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
     
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3;
       positions[i3] = (Math.random() - 0.5) * 100;     // X
-      positions[i3 + 1] = (Math.random() - 0.5) * 100; // Y
+      positions[i3 + 1] = (Math.random() - 0.5) * 320; // Y (spread from -160 to 160)
       positions[i3 + 2] = (Math.random() - 0.5) * 60;  // Z
       
       velocities[i3] = (Math.random() - 0.5) * 0.08;
@@ -63,7 +73,7 @@ export default function ThreeCanvas() {
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 
     const material = new THREE.PointsMaterial({
-      size: 1.5,
+      size: 1.8,
       map: createParticleTexture(),
       transparent: true,
       depthWrite: false,
@@ -73,7 +83,7 @@ export default function ThreeCanvas() {
     scene.add(particles);
 
     // --- Line Segments for Connections (Plexus) ---
-    const maxConnections = 350;
+    const maxConnections = 450;
     const linePositions = new Float32Array(maxConnections * 2 * 3);
     const lineColors = new Float32Array(maxConnections * 2 * 3);
     
@@ -91,34 +101,182 @@ export default function ThreeCanvas() {
     const lineSegments = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lineSegments);
 
-    // --- Extra Floating 3D Geometries ---
+    // --- Extra Floating 3D Geometries (Tech & design symbols: Curly Braces, HTML Tags, Ampersand, Arrows, Pen Nib, Cursor) ---
     const floatingShapes = [];
+    
+    // 1. Extruded 3D Figma Vector Pen Tool Nib Geometry (UI/UX Design)
+    const penNibShape = new THREE.Shape();
+    penNibShape.moveTo(0, 8); // Tip
+    penNibShape.lineTo(3.8, 2);
+    penNibShape.lineTo(2.8, -5);
+    penNibShape.lineTo(-2.8, -5);
+    penNibShape.lineTo(-3.8, 2);
+    penNibShape.closePath();
+    // Center circle hole inside nib
+    const nibHole = new THREE.Path();
+    nibHole.absarc(0, -1, 0.9, 0, Math.PI * 2, true);
+    penNibShape.holes.push(nibHole);
+    const penNibGeom = new THREE.ExtrudeGeometry(penNibShape, {
+      depth: 1.5,
+      bevelEnabled: true,
+      bevelSegments: 2,
+      steps: 1,
+      bevelSize: 0.3,
+      bevelThickness: 0.3
+    });
+    penNibGeom.center(); // Center origin
+
+    // 2. Extruded 3D Interactive Pointer Cursor Geometry (UX / Click Interaction)
+    const cursorShape = new THREE.Shape();
+    cursorShape.moveTo(-3, 6);
+    cursorShape.lineTo(4, 1);
+    cursorShape.lineTo(0.5, 0);
+    cursorShape.lineTo(3.5, -5);
+    cursorShape.lineTo(2, -5.5);
+    cursorShape.lineTo(-1, -0.5);
+    cursorShape.lineTo(-3.5, -2.5);
+    cursorShape.closePath();
+    const cursorGeom = new THREE.ExtrudeGeometry(cursorShape, {
+      depth: 1.2,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      steps: 1,
+      bevelSize: 0.25,
+      bevelThickness: 0.25
+    });
+    cursorGeom.center(); // Center origin
+
+    // 3. Extruded 3D Curly Brace Geometry '{' (JS/CSS code blocks)
+    const braceShape = new THREE.Shape();
+    // Outer edge curve
+    braceShape.moveTo(3, 6);
+    braceShape.quadraticCurveTo(1, 6, 1, 4.5);
+    braceShape.lineTo(1, 1.5);
+    braceShape.quadraticCurveTo(1, 0.5, -1, 0); // left-pointing middle tip
+    braceShape.quadraticCurveTo(1, -0.5, 1, -1.5);
+    braceShape.lineTo(1, -4.5);
+    braceShape.quadraticCurveTo(1, -6, 3, -6);
+    // Inner thickness path back to top
+    braceShape.lineTo(2, -6);
+    braceShape.quadraticCurveTo(0, -6, 0, -4.5);
+    braceShape.lineTo(0, -1.5);
+    braceShape.quadraticCurveTo(0, -0.5, -2, 0);
+    braceShape.quadraticCurveTo(0, 0.5, 0, 1.5);
+    braceShape.lineTo(0, 4.5);
+    braceShape.quadraticCurveTo(0, 6, 2, 6);
+    braceShape.closePath();
+    const braceGeom = new THREE.ExtrudeGeometry(braceShape, {
+      depth: 1.2,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      steps: 1,
+      bevelSize: 0.25,
+      bevelThickness: 0.25
+    });
+    braceGeom.center(); // Center origin
+
+    // 4. Extruded 3D Double HTML Angle Brackets Geometry '< >' (Web Layout Markup)
+    const leftBracket = new THREE.Shape();
+    leftBracket.moveTo(-1, 5);
+    leftBracket.lineTo(-5, 0);
+    leftBracket.lineTo(-1, -5);
+    leftBracket.lineTo(-2.2, -5);
+    leftBracket.lineTo(-6, 0);
+    leftBracket.lineTo(-2.2, 5);
+    leftBracket.closePath();
+
+    const rightBracket = new THREE.Shape();
+    rightBracket.moveTo(1, 5);
+    rightBracket.lineTo(5, 0);
+    rightBracket.lineTo(1, -5);
+    rightBracket.lineTo(2.2, -5);
+    rightBracket.lineTo(6, 0);
+    rightBracket.lineTo(2.2, 5);
+    rightBracket.closePath();
+
+    // Extrude both shapes in a single geometry
+    const tagGeom = new THREE.ExtrudeGeometry([leftBracket, rightBracket], {
+      depth: 1.0,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      steps: 1,
+      bevelSize: 0.2,
+      bevelThickness: 0.2
+    });
+    tagGeom.center(); // Center origin
+
+    // 5. Extruded 3D Ampersand Selector Geometry '&' (SCSS Nesting & Logic)
+    const ampShape = new THREE.Shape();
+    ampShape.moveTo(3, -5);
+    ampShape.lineTo(4, -4);
+    ampShape.quadraticCurveTo(2, -1, 1, 0.5);
+    ampShape.quadraticCurveTo(2.5, 2.5, 1.8, 4.5);
+    ampShape.quadraticCurveTo(0, 5.5, -1, 3.5);
+    ampShape.quadraticCurveTo(-1.8, 2, -0.5, 1);
+    ampShape.quadraticCurveTo(-3, -0.5, -3, -2.5);
+    ampShape.quadraticCurveTo(-3, -5.5, 0, -5.5);
+    ampShape.quadraticCurveTo(2.5, -5.5, 3, -5);
+    ampShape.closePath();
+    const ampGeom = new THREE.ExtrudeGeometry(ampShape, {
+      depth: 1.2,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      steps: 1,
+      bevelSize: 0.2,
+      bevelThickness: 0.2
+    });
+    ampGeom.center(); // Center origin
+
+    // 6. Extruded 3D Tech Directional Arrow Geometry '→' (Transitions & Nav Flow)
+    const arrowShape = new THREE.Shape();
+    arrowShape.moveTo(-5, 1.5);
+    arrowShape.lineTo(1, 1.5);
+    arrowShape.lineTo(0, 4.5);
+    arrowShape.lineTo(5, 0);
+    arrowShape.lineTo(0, -4.5);
+    arrowShape.lineTo(1, -1.5);
+    arrowShape.lineTo(-5, -1.5);
+    arrowShape.closePath();
+    const arrowGeom = new THREE.ExtrudeGeometry(arrowShape, {
+      depth: 1.2,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      steps: 1,
+      bevelSize: 0.2,
+      bevelThickness: 0.2
+    });
+    arrowGeom.center(); // Center origin
+
     const shapeGeometries = [
-      new THREE.IcosahedronGeometry(7, 1),
-      new THREE.BoxGeometry(8, 8, 8),
-      new THREE.TorusKnotGeometry(4, 1.2, 64, 8),
-      new THREE.OctahedronGeometry(6, 0),
-      new THREE.TorusGeometry(5, 1.5, 8, 24)
+      penNibGeom,
+      cursorGeom,
+      braceGeom,
+      tagGeom,
+      ampGeom,
+      arrowGeom
     ];
 
+    const shapesGroup = new THREE.Group();
+    scene.add(shapesGroup);
+
     const shapeMaterial = new THREE.MeshBasicMaterial({
-      color: 0x000000,
+      color: 0x6d28d9,
       wireframe: true,
       transparent: true,
-      opacity: 0.05,
+      opacity: 0.08,
     });
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
       const geom = shapeGeometries[i % shapeGeometries.length];
       const mesh = new THREE.Mesh(geom, shapeMaterial);
       
       mesh.position.set(
         (Math.random() - 0.5) * 80,
-        (Math.random() - 0.5) * 80,
+        (Math.random() - 0.5) * 240, // spread Y from -120 to 120
         (Math.random() - 0.5) * 40
       );
       
-      scene.add(mesh);
+      shapesGroup.add(mesh);
       
       floatingShapes.push({
         mesh,
@@ -170,6 +328,7 @@ export default function ThreeCanvas() {
       
       particles.position.y = scrollY * 0.025;
       lineSegments.position.y = scrollY * 0.025;
+      shapesGroup.position.y = scrollY * 0.025;
 
       floatingShapes.forEach((shape) => {
         shape.mesh.rotation.x += shape.rotSpeedX;
@@ -181,7 +340,7 @@ export default function ThreeCanvas() {
         shape.mesh.position.z += shape.velZ;
         
         if (Math.abs(shape.mesh.position.x) > 50) shape.velX *= -1;
-        if (Math.abs(shape.mesh.position.y) > 50) shape.velY *= -1;
+        if (Math.abs(shape.mesh.position.y) > 120) shape.velY *= -1;
         if (Math.abs(shape.mesh.position.z) > 30) shape.velZ *= -1;
       });
 
@@ -194,7 +353,7 @@ export default function ThreeCanvas() {
         positionsArray[i3 + 2] += velocities[i3 + 2];
         
         if (Math.abs(positionsArray[i3]) > 55) velocities[i3] *= -1;
-        if (Math.abs(positionsArray[i3 + 1]) > 55) velocities[i3 + 1] *= -1;
+        if (Math.abs(positionsArray[i3 + 1]) > 175) velocities[i3 + 1] *= -1;
         if (Math.abs(positionsArray[i3 + 2]) > 35) velocities[i3 + 2] *= -1;
       }
       geometry.attributes.position.needsUpdate = true;
@@ -234,14 +393,19 @@ export default function ThreeCanvas() {
             lPositions[lineSegmentStartIdx + 4] = y2;
             lPositions[lineSegmentStartIdx + 5] = z2;
 
-            const cVal = 1.0 - (alpha * 0.15); // Fade to white
-            lColors[lineSegmentStartIdx] = cVal;
-            lColors[lineSegmentStartIdx + 1] = cVal;
-            lColors[lineSegmentStartIdx + 2] = cVal;
+            // Interpolate line color between #6d28d9 (dark violet/lavender) and #f5f0fa (background)
+            // so connection lines are darker, more defined, and fade out cleanly
+            const r = 0.43 * alpha + 0.96 * (1.0 - alpha);
+            const g = 0.16 * alpha + 0.94 * (1.0 - alpha);
+            const b = 0.85 * alpha + 0.98 * (1.0 - alpha);
             
-            lColors[lineSegmentStartIdx + 3] = cVal;
-            lColors[lineSegmentStartIdx + 4] = cVal;
-            lColors[lineSegmentStartIdx + 5] = cVal;
+            lColors[lineSegmentStartIdx] = r;
+            lColors[lineSegmentStartIdx + 1] = g;
+            lColors[lineSegmentStartIdx + 2] = b;
+            
+            lColors[lineSegmentStartIdx + 3] = r;
+            lColors[lineSegmentStartIdx + 4] = g;
+            lColors[lineSegmentStartIdx + 5] = b;
 
             lineIndex++;
             if (lineIndex >= maxConnections) break;
