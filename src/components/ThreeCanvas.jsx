@@ -35,7 +35,7 @@ export default function ThreeCanvas() {
       canvas.height = 16;
       const ctx = canvas.getContext("2d");
       
-      ctx.fillStyle = "rgba(30, 23, 42, 0.85)";
+      ctx.fillStyle = "rgba(139, 92, 246, 0.85)";
       ctx.beginPath();
       ctx.arc(8, 8, 5, 0, Math.PI * 2);
       ctx.closePath();
@@ -309,19 +309,19 @@ export default function ThreeCanvas() {
             lPositions[lineSegmentStartIdx + 4] = y2;
             lPositions[lineSegmentStartIdx + 5] = z2;
 
-            // Interpolate line color between #1e172a (dark charcoal/black) and #f5f0fa (background)
-            // so connection lines are thin, delicate, and fade out cleanly
-            const r = 0.12 * alpha + 0.96 * (1.0 - alpha);
-            const g = 0.09 * alpha + 0.94 * (1.0 - alpha);
-            const b = 0.16 * alpha + 0.98 * (1.0 - alpha);
-            
-            lColors[lineSegmentStartIdx] = r;
-            lColors[lineSegmentStartIdx + 1] = g;
-            lColors[lineSegmentStartIdx + 2] = b;
-            
-            lColors[lineSegmentStartIdx + 3] = r;
-            lColors[lineSegmentStartIdx + 4] = g;
-            lColors[lineSegmentStartIdx + 5] = b;
+             // Interpolate line color between #8b5cf6 (lavender) and #f5f0fa (background)
+             // so connection lines are thin, delicate, and fade out cleanly
+             const r = 0.545 * alpha + 0.961 * (1.0 - alpha);
+             const g = 0.361 * alpha + 0.941 * (1.0 - alpha);
+             const b = 0.965 * alpha + 0.980 * (1.0 - alpha);
+             
+             lColors[lineSegmentStartIdx] = r;
+             lColors[lineSegmentStartIdx + 1] = g;
+             lColors[lineSegmentStartIdx + 2] = b;
+             
+             lColors[lineSegmentStartIdx + 3] = r;
+             lColors[lineSegmentStartIdx + 4] = g;
+             lColors[lineSegmentStartIdx + 5] = b;
 
             lineIndex++;
             if (lineIndex >= maxConnections) break;
