@@ -92,7 +92,116 @@ export default function ThreeCanvas() {
     const lineSegments = new THREE.LineSegments(lineGeometry, lineMaterial);
     scene.add(lineSegments);
 
+    // --- Extra Floating 3D Geometries (< >, { }, →) in Lavender Color ---
+    const braceShape = new THREE.Shape();
+    braceShape.moveTo(3, 6);
+    braceShape.quadraticCurveTo(1, 6, 1, 4.5);
+    braceShape.lineTo(1, 1.5);
+    braceShape.quadraticCurveTo(1, 0.5, -1, 0); // left-pointing middle tip
+    braceShape.quadraticCurveTo(1, -0.5, 1, -1.5);
+    braceShape.lineTo(1, -4.5);
+    braceShape.quadraticCurveTo(1, -6, 3, -6);
+    braceShape.lineTo(2, -6);
+    braceShape.quadraticCurveTo(0, -6, 0, -4.5);
+    braceShape.lineTo(0, -1.5);
+    braceShape.quadraticCurveTo(0, -0.5, -2, 0);
+    braceShape.quadraticCurveTo(0, 0.5, 0, 1.5);
+    braceShape.lineTo(0, 4.5);
+    braceShape.quadraticCurveTo(0, 6, 2, 6);
+    braceShape.closePath();
+    const braceGeom = new THREE.ExtrudeGeometry(braceShape, {
+      depth: 1.2,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      steps: 1,
+      bevelSize: 0.25,
+      bevelThickness: 0.25
+    });
+    braceGeom.center();
+
+    const leftBracket = new THREE.Shape();
+    leftBracket.moveTo(-1, 5);
+    leftBracket.lineTo(-5, 0);
+    leftBracket.lineTo(-1, -5);
+    leftBracket.lineTo(-2.2, -5);
+    leftBracket.lineTo(-6, 0);
+    leftBracket.lineTo(-2.2, 5);
+    leftBracket.closePath();
+
+    const rightBracket = new THREE.Shape();
+    rightBracket.moveTo(1, 5);
+    rightBracket.lineTo(5, 0);
+    rightBracket.lineTo(1, -5);
+    rightBracket.lineTo(2.2, -5);
+    rightBracket.lineTo(6, 0);
+    rightBracket.lineTo(2.2, 5);
+    rightBracket.closePath();
+
+    const tagGeom = new THREE.ExtrudeGeometry([leftBracket, rightBracket], {
+      depth: 1.0,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      steps: 1,
+      bevelSize: 0.2,
+      bevelThickness: 0.2
+    });
+    tagGeom.center();
+
+    const arrowShape = new THREE.Shape();
+    arrowShape.moveTo(-5, 1.5);
+    arrowShape.lineTo(1, 1.5);
+    arrowShape.lineTo(0, 4.5);
+    arrowShape.lineTo(5, 0);
+    arrowShape.lineTo(0, -4.5);
+    arrowShape.lineTo(1, -1.5);
+    arrowShape.lineTo(-5, -1.5);
+    arrowShape.closePath();
+    const arrowGeom = new THREE.ExtrudeGeometry(arrowShape, {
+      depth: 1.2,
+      bevelEnabled: true,
+      bevelSegments: 1,
+      steps: 1,
+      bevelSize: 0.2,
+      bevelThickness: 0.2
+    });
+    arrowGeom.center();
+
+    const shapeGeometries = [braceGeom, tagGeom, arrowGeom];
+
+    const shapesGroup = new THREE.Group();
+    scene.add(shapesGroup);
+
+    const shapeMaterial = new THREE.MeshBasicMaterial({
+      color: 0x8b5cf6, // Lavender color accent
+      wireframe: true,
+      transparent: true,
+      opacity: 0.08,
+    });
+
     const floatingShapes = [];
+
+    for (let i = 0; i < 9; i++) {
+      const geom = shapeGeometries[i % shapeGeometries.length];
+      const mesh = new THREE.Mesh(geom, shapeMaterial);
+      
+      mesh.position.set(
+        (Math.random() - 0.5) * 80,
+        (Math.random() - 0.5) * 80,
+        (Math.random() - 0.5) * 40
+      );
+      
+      shapesGroup.add(mesh);
+      
+      floatingShapes.push({
+        mesh,
+        rotSpeedX: 0.005 + Math.random() * 0.01,
+        rotSpeedY: 0.005 + Math.random() * 0.01,
+        rotSpeedZ: 0.005 + Math.random() * 0.01,
+        velX: (Math.random() - 0.5) * 0.05,
+        velY: (Math.random() - 0.5) * 0.05,
+        velZ: (Math.random() - 0.5) * 0.03,
+      });
+    }
 
     // --- Interactive Mouse & Scroll State ---
     let mouseX = 0;
@@ -130,9 +239,26 @@ export default function ThreeCanvas() {
       particles.rotation.x = targetY * 0.08;
       lineSegments.rotation.y = targetX * 0.12;
       lineSegments.rotation.x = targetY * 0.08;
+      shapesGroup.rotation.y = targetX * 0.12;
+      shapesGroup.rotation.x = targetY * 0.08;
       
       particles.position.z = -scrollY * 0.015;
       lineSegments.position.z = -scrollY * 0.015;
+      shapesGroup.position.z = -scrollY * 0.015;
+
+      floatingShapes.forEach((shape) => {
+        shape.mesh.rotation.x += shape.rotSpeedX;
+        shape.mesh.rotation.y += shape.rotSpeedY;
+        shape.mesh.rotation.z += shape.rotSpeedZ;
+        
+        shape.mesh.position.x += shape.velX;
+        shape.mesh.position.y += shape.velY;
+        shape.mesh.position.z += shape.velZ;
+        
+        if (Math.abs(shape.mesh.position.x) > 50) shape.velX *= -1;
+        if (Math.abs(shape.mesh.position.y) > 45) shape.velY *= -1;
+        if (Math.abs(shape.mesh.position.z) > 30) shape.velZ *= -1;
+      });
 
       const positionsArray = geometry.attributes.position.array;
       for (let i = 0; i < particleCount; i++) {
@@ -247,6 +373,8 @@ export default function ThreeCanvas() {
       material.dispose();
       lineGeometry.dispose();
       lineMaterial.dispose();
+      shapeGeometries.forEach((g) => g.dispose());
+      shapeMaterial.dispose();
       renderer.dispose();
     };
   }, []);
