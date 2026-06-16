@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, Download } from "lucide-react";
+import { ArrowDown, Code, Send } from "lucide-react";
 import { portfolioData } from "../data/portfolioData";
 import Typewriter from "./Typewriter";
 
@@ -130,12 +130,12 @@ export default function Hero() {
               marginBottom: "2rem",
             }}
           >
-            <button onClick={() => scrollToSection("contact")} className="btn btn-primary">
-              Get In Touch <ArrowRight size={18} />
+            <button onClick={() => scrollToSection("projects")} className="btn btn-primary">
+              View My Work <Code size={18} />
             </button>
-            <a href="/Vandana_Resume.pdf" download className="btn btn-secondary" style={{ textDecoration: "none" }}>
-              Download CV <Download size={18} />
-            </a>
+            <button onClick={() => scrollToSection("contact")} className="btn btn-secondary">
+              Let's Talk <Send size={18} />
+            </button>
           </div>
         </div>
       </div>
